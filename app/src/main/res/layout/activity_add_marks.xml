@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddMarks">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:text="Add Marks"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            android:id="@+id/addMarksStudentID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="25sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="25sp"
+            android:hint="N/A Student ID"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Subject1"
+            android:hint="Subject 1 Marks"
+            android:layout_below="@id/addMarksStudentID"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Subject2"
+            android:hint="Subject 2 Marks"
+            android:layout_below="@id/Subject1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Subject3"
+            android:hint="Subject 3 Marks"
+            android:layout_below="@id/Subject2"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Subject4"
+            android:hint="Subject 4 Marks"
+            android:layout_below="@id/Subject3"
+            />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save And Next"
+            android:id="@+id/button_SaveandNext"
+            android:layout_below="@id/Subject4"
+            android:layout_margin="35sp"
+            android:layout_centerInParent="true"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

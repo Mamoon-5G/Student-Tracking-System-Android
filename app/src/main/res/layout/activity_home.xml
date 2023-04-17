@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/frame_layout"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:id="@+id/dashboard"
+                android:layout_height="250dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="25dp"
+                app:cardCornerRadius="13dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient">
+
+                    <TextView
+                        android:id="@+id/Greet"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="N/A"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginBottom="25dp"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/students_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Greet"
+                        android:layout_marginTop="5dp"
+                        android:hint="N/A"
+                        android:textColor="@color/white"
+                        android:padding="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/admins_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/students_data"
+                        android:hint="N/A"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="15dp"
+                        android:padding="10dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageButton
+                android:id="@+id/addStudent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@id/dashboard"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/gradient_imagebutton"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/graduating_student"
+                android:layout_marginBottom="25dp" />
+
+            <ImageButton
+                android:id="@+id/DeleteStudent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@id/dashboard"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/delete"
+                android:scaleType="center"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/gradient_imagebutton"
+                android:layout_marginBottom="25dp"
+                android:layout_toRightOf="@id/addStudent" />
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/navbarr"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottomnavigationmenu"
+        android:background="@drawable/rounded_navbar"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

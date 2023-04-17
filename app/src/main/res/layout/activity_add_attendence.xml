@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAttendence">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/headingAttend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:layout_marginBottom="35sp"
+            android:text="Add Attendence"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AttendenceID"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="35sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginBottom="25sp"
+            android:hint="N/A Student ID"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attendence1"
+            android:hint="Subject 1 Attendence"
+            android:layout_below="@id/AttendenceID"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attendence2"
+            android:hint="Subject 2 Attendence"
+            android:layout_below="@id/attendence1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attendence3"
+            android:hint="Subject 3 Attendence"
+            android:layout_below="@id/attendence2"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attendence4"
+            android:hint="Subject 4 Attendence"
+            android:layout_below="@id/attendence3"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:id="@+id/finishData"
+            android:layout_below="@id/attendence4"
+            android:layout_margin="35sp"
+            android:layout_centerInParent="true"
+            />
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

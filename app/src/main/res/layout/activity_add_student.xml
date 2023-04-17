@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    app:cardCornerRadius="15dp"
+    android:backgroundTint="#C9ECE8"
+    android:layout_margin="35sp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Student Details"
+            android:layout_margin="12sp"
+            android:id="@+id/main_title"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/subheading"
+            android:text="Personal Details"
+            android:layout_marginTop="35sp"
+            android:gravity="center"
+            android:layout_below="@id/main_title"
+            />
+
+        <EditText
+            android:id="@+id/id_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded2"
+            android:hint="ID"
+            android:layout_below="@+id/subheading"
+            android:layout_margin="12sp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_input"
+            android:background="@drawable/rounded2"
+            android:layout_margin="12sp"
+            android:hint="Name"
+            android:inputType="text" />
+
+        <AutoCompleteTextView
+
+            android:id="@+id/department_input"
+            android:layout_below="@+id/name_input"
+            android:layout_width="fill_parent"
+            android:hint="Course"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded2"
+            android:layout_margin="12sp"
+            android:completionThreshold="2"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/semester_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="2"
+            android:background="@drawable/rounded2"
+            android:layout_margin="12sp"
+            android:layout_below="@+id/department_input"
+            android:hint="Semester"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/dob_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded2"
+            android:layout_margin="12sp"
+            android:layout_below="@+id/semester_input"
+            android:hint="Date of Birth"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/phone_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded2"
+            android:layout_below="@+id/dob_input"
+            android:layout_margin="12sp"
+            android:hint="Phone Number"
+            android:inputType="date" />
+
+
+        <Button
+            android:id="@+id/submit_database"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_input"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded"
+            android:layout_margin="12sp"
+            android:gravity="center"
+            android:text="Save and NeXT" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
