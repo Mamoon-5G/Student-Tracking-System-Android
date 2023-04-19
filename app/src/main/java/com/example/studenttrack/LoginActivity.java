@@ -10,10 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    public Button register,login;
+    public Button login;
     public EditText logusername , logpassword;
 
-    public LoginHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,40 +20,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
 
-        //Buttons
-        register = findViewById(R.id.register_button);
+        //Login Button
         login = findViewById(R.id.button_login);
         //EditText
         logusername = findViewById(R.id.edittext_username);
         logpassword = findViewById(R.id.edittext_password);
-        DB = new LoginHelper(this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenHomePage();
+                // Verify the admin
 
             }
-
-
         });
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenRegister();
-            }
-        });
-
-
-
     }
-    // To Open the Register page for user
-    private void OpenRegister() {
-
-        Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-        startActivity(intent);
-    }
-    //to Open the new Home page for  user
     private void OpenHomePage() {
         String username = logusername.getText().toString();
         String password = logpassword.getText().toString();
@@ -63,13 +42,16 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Please Enter All Details", Toast.LENGTH_SHORT).show();
 
         }else{
-            Boolean checkuserpass = DB.checkuserpass(username,password);
-            if(checkuserpass==true){
+
+            //Static Creditails of admin
+            if(username.equals("admin")&&password.equals("1234")){
                 Toast.makeText(this, "User Succesfully Login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                 intent.putExtra("username",username);
                 startActivity(intent);
 
+            }else{
+                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
             }
         }
 
