@@ -15,13 +15,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ViewStudent extends AppCompatActivity {
+public class addMarksETI extends AppCompatActivity {
 
     public TextView studentID_view;
     public DBhelper db;
     RecyclerView recyclerViewstud;
     Button deleted;
-//    AttendenceAdapter adapter2;
+    //    AttendenceAdapter adapter2;
 //    RecyclerView recyclerViewMarks;
 //    ArrayList<String> idmarks ,marks1,marks2,marks3,marks4;
     ArrayList<String> id,name,department,sem,date,phone;
@@ -30,7 +30,7 @@ public class ViewStudent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_student);
+        setContentView(R.layout.activity_add_marks_eti);
 
         Bundle i = getIntent().getExtras();
         String studentId = i.getString("StudentID");

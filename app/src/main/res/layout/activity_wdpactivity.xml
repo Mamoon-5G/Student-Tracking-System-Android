@@ -98,6 +98,7 @@
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/verify_wdp"
                             android:layout_below="@id/getpasscode_wdp"
                             android:text="Verify"
                             android:background="@drawable/rounded"
@@ -106,17 +107,8 @@
                             android:layout_marginBottom="25sp"
                             />
                     </RelativeLayout>
-
                 </androidx.cardview.widget.CardView>
-
-
-
-
-
-
             </RelativeLayout>
-
         </androidx.cardview.widget.CardView>
-
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

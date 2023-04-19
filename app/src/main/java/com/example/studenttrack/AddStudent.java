@@ -158,7 +158,6 @@ public class AddStudent extends AppCompatActivity {
 
     private void OpenAddMarks() {
         Intent intent = new Intent ( getApplicationContext(), HomeActivity.class );
-        intent.putExtra ( "text", insert_id.getText().toString());
         startActivity(intent);
     }
 

@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchMAD extends AppCompatActivity {
 
     public AutoCompleteTextView autoCompleteTextView;
     public ArrayList<String> getPrimarykey;
@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search_mad);
         getSupportActionBar().hide();
         autoCompleteTextView = findViewById(R.id.searchh);
         viewStudent = findViewById(R.id.ViewStudent);
@@ -46,25 +46,18 @@ public class SearchActivity extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.searchh);
         autoCompleteTextView.setThreshold(1);
         autoCompleteTextView.setAdapter(adapter);
-
-
         viewStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String selectedStudentId = autoCompleteTextView.getText().toString();
                 if (!selectedStudentId.isEmpty()) {
-                    Intent i = new Intent(SearchActivity.this, ViewStudent.class);
-                    i.putExtra("StudentID", selectedStudentId);
+                    Intent i = new Intent(SearchMAD.this, addMarksMAD.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(SearchActivity.this, "Please select a student ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchMAD.this, "Please select a student ID", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-
-
 
         studID = new ArrayList<>();
         studName = new ArrayList<>();
@@ -75,40 +68,12 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         displaydata();
 
-
-
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navbarr);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.homemenu:
-                        //Intent 1
-                        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.searchmenu:
-                        Intent intent2 = new Intent(getApplicationContext(),SearchActivity.class);
-                        startActivity(intent2);
-                        //Intent 2
-                        break;
-                    case R.id.profilemenu:
-                        //Intent 3
-                        Intent intent3 = new Intent(getApplicationContext(),ProfileActivity.class);
-                        startActivity(intent3);
-                        break;
-
-                }
-                return true;
-            }
-        });
     }
 
     private void displaydata() {
         Cursor cursor = database.getdata();
         if (cursor.getCount() == 0) {
-            Toast.makeText(SearchActivity.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchMAD.this, "No Entry Exists", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
                 studID.add(cursor.getString(0));

@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
          SetGreeting(); // Sets the Greet message to admin
           setStudent(); // Sets the Total Students to dashboard
         Intent intentlog = getIntent();
-        String sendusername = intentlog.getExtras().getString("username");
+        String sendusername = (String)intentlog.getExtras().getString("username");
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navbarr);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
