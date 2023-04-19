@@ -97,6 +97,18 @@
                 android:background="@drawable/gradient_imagebutton"
                 android:layout_marginBottom="25dp"
                 android:layout_toRightOf="@id/addStudent" />
+            <ImageButton
+                android:id="@+id/subjects_button"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@id/addStudent"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/gradient_imagebutton"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/book_stack"
+                android:layout_marginBottom="25dp" />
+
 
 
         </RelativeLayout>

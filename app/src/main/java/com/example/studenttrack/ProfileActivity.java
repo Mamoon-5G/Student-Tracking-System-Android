@@ -18,7 +18,6 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView DisplayName;
     public TextView DisplayUser;
 
-    public LoginHelper Db;
     public Button logout;
 
 
@@ -36,7 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         DisplayUser.setText("username : "+dispusername);
-        LoginHelper Db = new LoginHelper(this);
 
         String name =dispusername;
         DisplayName.setText("Hello! "+name);

@@ -27,11 +27,10 @@ import java.util.Date;
 public class HomeActivity extends AppCompatActivity {
 
     private TextView text;
-    private TextView admin_counts,student_counts;
-    private LoginHelper mydatabase;
+    private TextView student_counts;
     private DBhelper DB;
-
     private ImageButton addstudent;
+    public ImageButton subjects;
 
 
 
@@ -39,33 +38,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
-        getSupportActionBar().hide();
+        //Accesing Views
         text = findViewById(R.id.Greet);
         addstudent = findViewById(R.id.addStudent);
-        mydatabase = new LoginHelper(this);
+        subjects = (ImageButton)findViewById(R.id.subjects_button);
+        //Objects
         DB = new DBhelper(this);
-
-
-        //Greet Message for user
-        Date dt = new Date();
-        int hours = dt.getHours();
-        String greeting = null;
-        if(hours>=1 && hours<=12){
-            greeting = "Good Morning";
-        } else if(hours>=12 && hours<=16){
-            greeting = "Good Afternoon";
-        } else if(hours>=16 && hours<=21){
-            greeting = "Good Evening";
-        } else if(hours>=21 && hours<=24){
-            greeting = "Good Night";
-        }
-        //Setting text to user's Home page
-        text.setText(greeting);
+         SetGreeting(); // Sets the Greet message to admin
+          setStudent(); // Sets the Total Students to dashboard
         Intent intentlog = getIntent();
         String sendusername = intentlog.getExtras().getString("username");
-
-        setAdmin();
-        setStudent();
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navbarr);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -93,13 +75,40 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        addstudent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenAddStudent();
-            }
-        });
+        addstudent.setOnClickListener(v -> OpenAddStudent());
+
+        subjects.setOnClickListener(v -> OpenSubjects());
         //Admins Account Counting
+    }
+
+    private void OpenSubjects() {
+
+        Intent intent = new Intent(HomeActivity.this,Subjects.class);
+        startActivity(intent);
+
+    }
+
+    private void SetGreeting() {
+
+        Date dt = new Date();
+
+
+        //Greet Message for user
+        int hours = dt.getHours();
+        String greeting = null;
+        if(hours>=1 && hours<=12){
+            greeting = "Good Morning";
+        } else if(hours>=12 && hours<=16){
+            greeting = "Good Afternoon";
+        } else if(hours>=16 && hours<=21){
+            greeting = "Good Evening";
+        } else if(hours>=21 && hours<=24){
+            greeting = "Good Night";
+        }
+
+
+        //Setting text to user's Home page
+        text.setText(greeting);
     }
 
     private void OpenAddStudent() {
@@ -107,12 +116,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setAdmin() {
-        admin_counts = findViewById(R.id.admins_data);
-        int count = mydatabase.openUser();
-        String stringValue = String.valueOf(count);
-        admin_counts.setText("Total Administartors : 0"+stringValue);
-    }
 
     private void setStudent(){
         student_counts = findViewById(R.id.students_data);
