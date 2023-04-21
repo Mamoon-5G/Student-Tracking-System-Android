@@ -19,13 +19,19 @@ public class ViewStudent extends AppCompatActivity {
 
     public TextView studentID_view;
     public DBhelper db;
-    RecyclerView recyclerViewstud;
+    RecyclerView recyclerViewstud,recyclerViewETI,recyclerViewMAD,recyclerViewWDP,recyclerViewPWP;
     Button deleted;
-//    AttendenceAdapter adapter2;
-//    RecyclerView recyclerViewMarks;
-//    ArrayList<String> idmarks ,marks1,marks2,marks3,marks4;
     ArrayList<String> id,name,department,sem,date,phone;
+    ArrayList<String> ut1ETI,ut2ETI,theoryETI;
+    ArrayList<String> ut1MAD,ut2MAD,theoryMAD;
+    ArrayList<String> ut1WDP,ut2WDP,theoryWDP;
+    ArrayList<String> ut1PWP,ut2PWP,theoryPWP;
     ViewAdapter adapter;
+    ETIAdapter etiAdapter;
+
+    MADAdapter madAdapter;
+    WDPAdapter wdpAdapter;
+    PWPAdapter pwpAdapter;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,33 +50,64 @@ public class ViewStudent extends AppCompatActivity {
         sem = new ArrayList<>();
         date = new ArrayList<>();
         phone = new ArrayList<>();
-//         idmarks = new ArrayList<>();
-//         marks1 = new ArrayList<>();
-//         marks2 = new ArrayList<>();
-//         marks3 = new ArrayList<>();
-//         marks4 = new ArrayList<>();
-//        recyclerViewMarks = findViewById(R.id.RecycleViewMarks);
-//        adapter2 = new AttendenceAdapter(this,idmarks,marks1,marks2,marks3,marks4);
-//        recyclerViewMarks.setAdapter(adapter2);
-//        recyclerViewMarks.setLayoutManager(new LinearLayoutManager(this));
+
+        ut1ETI = new ArrayList<>();
+        ut2ETI = new ArrayList<>();
+        theoryETI = new ArrayList<>();
+
+
+        ut1MAD = new ArrayList<>();
+        ut2MAD = new ArrayList<>();
+        theoryMAD = new ArrayList<>();
+
+
+
+        ut1WDP = new ArrayList<>();
+        ut2WDP = new ArrayList<>();
+        theoryWDP = new ArrayList<>();
+
+        ut1PWP = new ArrayList<>();
+        ut2PWP = new ArrayList<>();
+        theoryPWP = new ArrayList<>();
+
+
         recyclerViewstud = findViewById(R.id.RecycleViewStudent);
+        recyclerViewETI = findViewById(R.id.RecycleViewETIMarks);
+        recyclerViewMAD = findViewById(R.id.RecycleViewMADMarks);
+        recyclerViewWDP = findViewById(R.id.RecycleViewWDPMarks);
+        recyclerViewPWP = findViewById(R.id.RecycleViewPWPMarks);
+
         adapter = new ViewAdapter(this,id,name,department,sem,date,phone);
+        etiAdapter = new ETIAdapter(this,ut1ETI,ut2ETI,theoryETI);//ETI
+        madAdapter = new MADAdapter(this,ut1MAD,ut2MAD,theoryMAD);//MAD
+        wdpAdapter = new WDPAdapter(this,ut1WDP,ut2WDP,theoryWDP);//WDP
+        pwpAdapter = new PWPAdapter(this,ut1PWP,ut2PWP,theoryPWP);//PWP
+
         recyclerViewstud.setAdapter(adapter);
         recyclerViewstud.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerViewETI.setAdapter(etiAdapter);
+        recyclerViewETI.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerViewMAD.setAdapter(madAdapter);
+        recyclerViewMAD.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerViewWDP.setAdapter(wdpAdapter);
+        recyclerViewWDP.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerViewPWP.setAdapter(wdpAdapter);
+        recyclerViewPWP.setLayoutManager(new LinearLayoutManager(this));
+
 
         studentID_view.setText(studentId);
-        deleted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String dbid_view = studentID_view.getText().toString();
-                DeleteUser();
-            }
-        });
+
 
         String dbid_view = studentID_view.getText().toString();
         displaydata(dbid_view);
-//        displayMarks(dbid_view);
+        DisplayETI(dbid_view);
+        DisplayMAD(dbid_view);
+        DisplayWDP(dbid_view);
+        DisplayPWP(dbid_view);
 
 
 
@@ -82,12 +119,55 @@ public class ViewStudent extends AppCompatActivity {
 
     }
 
-    private void DeleteUser() {
+    private void DisplayPWP(String search) {
+        Cursor cursor = db.searchPWP(String.valueOf(search));
+        if (cursor.getCount() == 0) {
+            //Set text view
+            return;
+        } else {
+            while (cursor.moveToNext()) {
+                ut1PWP.add(cursor.getString(0));
+                ut2PWP.add(cursor.getString(1));
+                theoryPWP.add(cursor.getString(2));
 
-        db.deleteData();
+            }
+            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+        }
+    }
 
+    private void DisplayWDP(String search) {
+        Cursor cursor = db.searchWDP(String.valueOf(search));
+        if (cursor.getCount() == 0) {
+            //Set text view
+            return;
+        } else {
+            while (cursor.moveToNext()) {
+                ut1WDP.add(cursor.getString(0));
+                ut2WDP.add(cursor.getString(1));
+                theoryWDP.add(cursor.getString(2));
+
+            }
+            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+        }
+    }
+
+    private void DisplayMAD(String search){
+        Cursor cursor = db.searchMAD(String.valueOf(search));
+        if (cursor.getCount() == 0) {
+            //Set text view
+            return;
+        } else {
+            while (cursor.moveToNext()) {
+                ut1MAD.add(cursor.getString(0));
+                ut2MAD.add(cursor.getString(1));
+                theoryMAD.add(cursor.getString(2));
+
+            }
+            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+        }
 
     }
+
 
     private void displaydata(String search) {
         Cursor cursor = db.searchData(String.valueOf(search)); // Pass the studentId parameter
@@ -106,22 +186,23 @@ public class ViewStudent extends AppCompatActivity {
             adapter.notifyDataSetChanged(); // Notify the adapter after adding data
         }
     }
-//    private void displayMarks(String search){
-//        Cursor cursor = db.searchMarks(String.valueOf(search)); // Pass the studentId parameter
-//        if (cursor.getCount() == 0) {
-//            Toast.makeText(this, "No Entry", Toast.LENGTH_SHORT).show();
-//            return;
-//        } else {
-//            while (cursor.moveToNext()) {
-//                idmarks.add(cursor.getString(0));
-//                marks1.add(cursor.getString(1));
-//                marks2.add(cursor.getString(2));
-//                marks3.add(cursor.getString(3));
-//                marks4.add(cursor.getString(4));
-//            }
-//            adapter2.notifyDataSetChanged(); // Notify the adapter after adding data
-//        }
 
-//    }
+    private void DisplayETI(String search){
+        Cursor cursor = db.searchETI(String.valueOf(search));
+        if (cursor.getCount() == 0) {
+            //Set text view
+            return;
+        } else {
+            while (cursor.moveToNext()) {
+                ut1ETI.add(cursor.getString(0));
+                ut2ETI.add(cursor.getString(1));
+                theoryETI.add(cursor.getString(2));
+
+            }
+            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+        }
+
+    }
+
 
 }

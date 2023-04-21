@@ -52,6 +52,7 @@ public class SearchPWP extends AppCompatActivity {
                 String selectedStudentId = autoCompleteTextView.getText().toString();
                 if (!selectedStudentId.isEmpty()) {
                     Intent i = new Intent(SearchPWP.this, addMarksPWP.class);
+                    i.putExtra("SelectedStudentID",selectedStudentId);
                     startActivity(i);
                 } else {
                     Toast.makeText(SearchPWP.this, "Please select a student ID", Toast.LENGTH_SHORT).show();

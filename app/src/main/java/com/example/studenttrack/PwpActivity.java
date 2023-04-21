@@ -20,7 +20,7 @@ public class PwpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_etiactivity);
+        setContentView(R.layout.activity_pwp);
         getSupportActionBar().hide();
 
         logVerfiy = (Button) findViewById(R.id.verify_pwp);
@@ -44,11 +44,10 @@ public class PwpActivity extends AppCompatActivity {
         } else {
             if (passcode.equals("123456")) {
                 Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                OpenWDP();
+                Intent i = new Intent(this, SearchPWP.class);
+                startActivity(i);
             } else {
-                if (passcode != "123456") {
-                    Toast.makeText(this, "Wrong Pass-code", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(this, "Wrong Pass-code", Toast.LENGTH_SHORT).show();
             }
         }
     }

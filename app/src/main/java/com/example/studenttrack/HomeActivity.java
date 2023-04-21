@@ -46,8 +46,6 @@ public class HomeActivity extends AppCompatActivity {
         DB = new DBhelper(this);
          SetGreeting(); // Sets the Greet message to admin
           setStudent(); // Sets the Total Students to dashboard
-        Intent intentlog = getIntent();
-        String sendusername = (String)intentlog.getExtras().getString("username");
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navbarr);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,7 +64,6 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.profilemenu:
                         //Intent 3
                         Intent intent3 = new Intent(getApplicationContext(),ProfileActivity.class);
-                        intent3.putExtra("username",sendusername);
                         startActivity(intent3);
 
                         break;

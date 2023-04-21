@@ -52,6 +52,7 @@ public class SearchMAD extends AppCompatActivity {
                 String selectedStudentId = autoCompleteTextView.getText().toString();
                 if (!selectedStudentId.isEmpty()) {
                     Intent i = new Intent(SearchMAD.this, addMarksMAD.class);
+                    i.putExtra("SelectedStudentID",selectedStudentId);
                     startActivity(i);
                 } else {
                     Toast.makeText(SearchMAD.this, "Please select a student ID", Toast.LENGTH_SHORT).show();

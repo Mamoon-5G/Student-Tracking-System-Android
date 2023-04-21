@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,10 +21,10 @@ public class addMarksETI extends AppCompatActivity {
     public TextView studentID_view;
     public DBhelper db;
     RecyclerView recyclerViewstud;
-    Button deleted;
-    //    AttendenceAdapter adapter2;
-//    RecyclerView recyclerViewMarks;
-//    ArrayList<String> idmarks ,marks1,marks2,marks3,marks4;
+
+    public EditText getMarksETI1,getMarksETI2,getMarksTheory;
+    public Button submitETImarks;
+
     ArrayList<String> id,name,department,sem,date,phone;
     ViewAdapter adapter;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
@@ -31,11 +32,15 @@ public class addMarksETI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_marks_eti);
-
         Bundle i = getIntent().getExtras();
-        String studentId = i.getString("StudentID");
-        studentID_view = findViewById(R.id.StudentID_view);
-        deleted = findViewById(R.id.DeleteStudentfinal);
+        String studentId = i.getString("SelectedStudentID");
+        getMarksETI1 = (EditText) findViewById(R.id.getmarks_eti1);
+        getMarksETI2 = (EditText) findViewById(R.id.getmarks_eti2);
+        getMarksTheory = (EditText) findViewById(R.id.getmarks_etitheory);
+        submitETImarks = (Button) findViewById(R.id.submitETImarks);
+
+
+
         db = new DBhelper(this); // Initialize the db object
 
         id = new ArrayList<>();
@@ -44,50 +49,42 @@ public class addMarksETI extends AppCompatActivity {
         sem = new ArrayList<>();
         date = new ArrayList<>();
         phone = new ArrayList<>();
-//         idmarks = new ArrayList<>();
-//         marks1 = new ArrayList<>();
-//         marks2 = new ArrayList<>();
-//         marks3 = new ArrayList<>();
-//         marks4 = new ArrayList<>();
-//        recyclerViewMarks = findViewById(R.id.RecycleViewMarks);
-//        adapter2 = new AttendenceAdapter(this,idmarks,marks1,marks2,marks3,marks4);
-//        recyclerViewMarks.setAdapter(adapter2);
-//        recyclerViewMarks.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewstud = findViewById(R.id.RecycleViewStudent);
+        recyclerViewstud = findViewById(R.id.RecycleViewStudent_eti);
         adapter = new ViewAdapter(this,id,name,department,sem,date,phone);
         recyclerViewstud.setAdapter(adapter);
         recyclerViewstud.setLayoutManager(new LinearLayoutManager(this));
 
+        String dbid_view = studentId;
+        displaydata(dbid_view);
 
-        studentID_view.setText(studentId);
-        deleted.setOnClickListener(new View.OnClickListener() {
+
+
+        submitETImarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dbid_view = studentID_view.getText().toString();
-                DeleteUser();
+
+                String dbmarksUT1 = getMarksETI1.getText().toString();
+                String dbmarksUT2 = getMarksETI2.getText().toString();
+                String dbmarksTheory = getMarksETI1.getText().toString();
+
+
+                String dbid = dbid_view;
+                boolean result = db.insertEtiMarks(dbid,dbmarksUT1,dbmarksUT2,dbmarksTheory);
+                if(result == true){
+                    Toast.makeText(addMarksETI.this, "Data Entered Successfully", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(addMarksETI.this, "Not Inserted", Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
 
-        String dbid_view = studentID_view.getText().toString();
-        displaydata(dbid_view);
-//        displayMarks(dbid_view);
-
-
-
-
-
-
-
-
-
     }
 
-    private void DeleteUser() {
-
-        db.deleteData();
 
 
-    }
 
     private void displaydata(String search) {
         Cursor cursor = db.searchData(String.valueOf(search)); // Pass the studentId parameter
@@ -106,22 +103,6 @@ public class addMarksETI extends AppCompatActivity {
             adapter.notifyDataSetChanged(); // Notify the adapter after adding data
         }
     }
-//    private void displayMarks(String search){
-//        Cursor cursor = db.searchMarks(String.valueOf(search)); // Pass the studentId parameter
-//        if (cursor.getCount() == 0) {
-//            Toast.makeText(this, "No Entry", Toast.LENGTH_SHORT).show();
-//            return;
-//        } else {
-//            while (cursor.moveToNext()) {
-//                idmarks.add(cursor.getString(0));
-//                marks1.add(cursor.getString(1));
-//                marks2.add(cursor.getString(2));
-//                marks3.add(cursor.getString(3));
-//                marks4.add(cursor.getString(4));
-//            }
-//            adapter2.notifyDataSetChanged(); // Notify the adapter after adding data
-//        }
 
-//    }
 
 }
