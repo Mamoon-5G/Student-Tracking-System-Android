@@ -144,10 +144,11 @@ public class ViewStudent extends AppCompatActivity {
 
             }
         }
-        float total = (float) (mad_attendence + eti_attendence + py_attendence)/12*100;
+        float subtotal = mad_attendence + eti_attendence + py_attendence;
+        float total = subtotal/8*100;
         int attendence = (int)total;
 
-        DecimalFormat dfx = new DecimalFormat("##.#");
+        DecimalFormat dfx = new DecimalFormat("###.#");
         String per = dfx.format(total);
         ShowAttendance.setText(per+"%");
         studentAttendence.setProgress(attendence);

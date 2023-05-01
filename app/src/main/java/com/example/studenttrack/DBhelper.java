@@ -245,10 +245,7 @@ public class DBhelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void deleteData() {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL("DELETE FROM  students_details;");
-    }
+
 
 
     public Cursor searchETIAttendence(String studentId) {
@@ -268,5 +265,16 @@ public class DBhelper extends SQLiteOpenHelper {
         String query = "SELECT Attendence FROM pwpAttendence WHERE id=?";
         Cursor cursor = db.rawQuery(query, new String[]{studentId});
         return cursor;
+    }
+
+    public void deleteData(String studentID) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.execSQL("DELETE FROM  students_details WHERE id=?;", new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  mad_marks WHERE id=?;",new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  eti_marks WHERE id=?;",new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  pwp_marks WHERE id=?;",new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  pwpAttendence WHERE id=?;",new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  madAttendence WHERE id=?;",new String[]{studentID});
+        sqLiteDatabase.execSQL("DELETE FROM  etiAttendence WHERE id=?;",new String[]{studentID});
     }
 }

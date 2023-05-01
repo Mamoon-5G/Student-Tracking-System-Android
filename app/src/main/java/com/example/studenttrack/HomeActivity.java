@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView student_counts;
     private DBhelper DB;
     private ImageButton addstudent;
-    public ImageButton subjects;
+    public ImageButton subjects,Delete;
 
 
 
@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         text = findViewById(R.id.Greet);
         addstudent = findViewById(R.id.addStudent);
         subjects = (ImageButton)findViewById(R.id.subjects_button);
+        Delete = (ImageButton) findViewById(R.id.DeleteStudent);
         //Objects
         DB = new DBhelper(this);
          SetGreeting(); // Sets the Greet message to admin
@@ -76,6 +77,14 @@ public class HomeActivity extends AppCompatActivity {
 
         subjects.setOnClickListener(v -> OpenSubjects());
         //Admins Account Counting
+        Delete.setOnClickListener(v -> OpenDelete());
+    }
+
+    private void OpenDelete() {
+
+        Intent i = new Intent(HomeActivity.this,DeleteStudent.class);
+        startActivity(i);
+
     }
 
     private void OpenSubjects() {

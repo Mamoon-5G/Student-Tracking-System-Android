@@ -15,11 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    public TextView DisplayName;
-    public TextView DisplayUser;
-
-    public Button logout;
-
+   Button logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,16 +24,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         getSupportActionBar().hide();
 
-        Intent intent4 = getIntent();
-        String dispusername = intent4.getStringExtra("username");
-        DisplayUser = findViewById(R.id.userid_user);
-        DisplayName = findViewById(R.id.name_user);
-
-
-        DisplayUser.setText("username : "+dispusername);
-
-        String name =dispusername;
-        DisplayName.setText("Hello! "+name);
         logout = findViewById(R.id.Logout);
 
         logout.setOnClickListener(new View.OnClickListener() {

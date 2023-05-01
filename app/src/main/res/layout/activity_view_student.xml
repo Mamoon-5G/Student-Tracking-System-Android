@@ -228,55 +228,57 @@
                 app:cardCornerRadius="5dp"
                 android:layout_margin="10dp"
                 android:padding="5dp"
-                android:backgroundTint="#EDDE59"
+                android:backgroundTint="#79DAD1"
                 >
+
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="386dp"
+                    android:layout_height="345dp">
+
                     <TextView
 
+                        android:id="@+id/studenttt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="25dp"
                         android:layout_margin="15dp"
-                        android:textStyle="bold"
-                        android:id="@+id/studenttt"
                         android:text="Student Performance"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
 
                         />
 
                     <TableLayout
+                        android:id="@+id/markstable"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/markstable"
                         android:layout_below="@id/studenttt"
-                        android:layout_margin="15dp"
                         android:layout_centerHorizontal="true"
-                        >
+                        android:layout_margin="15dp">
+
                         <TableRow>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=""
-                                android:hint="Percentage"
                                 android:layout_gravity="center"
-                                />
+                                android:hint="Percentage"
+                                android:text="" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=""
-                                android:hint="Attendence"
                                 android:layout_gravity="center"
-                                />
+                                android:hint="Attendence"
+                                android:text="" />
 
                         </TableRow>
+
                         <TableRow>
+
                             <RelativeLayout
                                 android:layout_width="170dp"
-                                android:layout_height="150dp"
-                                >
+                                android:layout_height="150dp">
+
                                 <ProgressBar
                                     android:id="@+id/studentPercentage"
                                     style="?android:attr/progressBarStyleHorizontal"
@@ -284,52 +286,45 @@
                                     android:layout_height="match_parent"
                                     android:indeterminate="false"
                                     android:max="100"
-                                    android:progress="0"
+                                    android:progress="25"
                                     android:progressDrawable="@drawable/circular"
-                                    android:secondaryProgress="100"
-                                    />
+                                    android:secondaryProgress="100" />
+
                                 <TextView
                                     android:id="@+id/showpercentages"
                                     android:layout_width="250dp"
                                     android:layout_height="250dp"
+                                    android:layout_centerInParent="true"
                                     android:gravity="center"
                                     android:text="25%"
-                                    android:layout_centerInParent="true"
                                     android:textColor="@color/black"
                                     android:textSize="15sp" />
-
-
                             </RelativeLayout>
                             <RelativeLayout
                                 android:layout_width="170dp"
                                 android:layout_height="150dp">
-
                                 <ProgressBar
-
                                     android:id="@+id/studentAttendencer"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="170dp"
                                     android:layout_height="150dp"
                                     android:indeterminate="false"
                                     android:max="100"
-                                    android:progress="35"
+                                    android:progress="25"
                                     android:progressDrawable="@drawable/circular"
-                                    android:secondaryProgress="100"
-                                    />
+                                    android:secondaryProgress="100" />
                                 <TextView
                                     android:id="@+id/showAttendences"
                                     android:layout_width="250dp"
                                     android:layout_height="250dp"
+                                    android:layout_centerInParent="true"
                                     android:gravity="center"
                                     android:text="25%"
-                                    android:layout_centerInParent="true"
                                     android:textColor="@color/black"
                                     android:textSize="15sp" />
-
                             </RelativeLayout>
                         </TableRow>
                     </TableLayout>
-
                     <TextView
                         android:id="@+id/showResult"
                         android:layout_width="match_parent"
@@ -341,7 +336,6 @@
                         android:layout_marginBottom="15dp"
                         android:text="Result : PASS"
                         android:textSize="15dp" />
-
                     <TextView
                         android:id="@+id/showGrade"
                         android:layout_width="match_parent"
@@ -349,11 +343,9 @@
                         android:layout_below="@id/showResult"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
-                        android:text="GRADE : A"
                         android:layout_marginBottom="15dp"
+                        android:text="GRADE : A"
                         android:textSize="15dp" />
-
-
 
 
                 </RelativeLayout>

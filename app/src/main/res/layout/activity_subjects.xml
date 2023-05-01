@@ -22,58 +22,129 @@
                     android:id="@+id/heading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Subjects"
-                    android:textSize="35dp"
+                    android:text="Faculty Subjects"
+                    android:textSize="25dp"
                     android:layout_margin="35dp"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/heading"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading2"
+                    android:text="To Add Marks and Attendence"
+                    android:layout_marginLeft="45dp"
+                    />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/core"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/heading"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/heading2"
                     android:layout_centerInParent="true"
                     android:layout_margin="25dp"
                     android:backgroundTint="#C2E6E6"
                     android:textAlignment="center"
                     app:cardCornerRadius="15dp">
-
-
-                    <LinearLayout
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="25dp"
+                        android:textStyle="bold"
+                        android:id="@+id/text"
+                        android:textSize="16dp"
+                        android:text="Mobile Application Development"
+                        />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mad"
+                        android:background="@drawable/rounded"
+                        android:layout_margin="15dp"
+                        android:layout_below="@id/text"
+                        android:layout_marginTop="35dp"
+                        android:backgroundTint="#673AB7"
+                        android:text="Enter"
+                        />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/core2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/core"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="25dp"
+                    android:backgroundTint="#C2E6E6"
+                    android:textAlignment="center"
+                    app:cardCornerRadius="15dp">
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="25dp"
+                            android:textStyle="bold"
+                            android:id="@+id/text2"
+                            android:textSize="16dp"
+                            android:text="Programming with Python"
+                            />
                         <Button
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:id="@+id/mad"
-                            android:layout_margin="15dp"
-                            android:layout_marginTop="35dp"
-                            android:backgroundTint="#673AB7"
-                            android:text="MAD"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="wrap_content"
                             android:layout_margin="15dp"
                             android:id="@+id/pwp"
+                            android:layout_below="@id/text2"
+                            android:background="@drawable/rounded"
                             android:backgroundTint="#673AB7"
-                            android:text="PWP"
-                            android:textSize="25dp" />
+                            android:text="Enter"
+                            />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/core3"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/core2"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="25dp"
+                    android:backgroundTint="#C2E6E6"
+                    android:textAlignment="center"
+                    app:cardCornerRadius="15dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="25dp"
+                            android:textStyle="bold"
+                            android:id="@+id/text3"
+                            android:textSize="16dp"
+                            android:text="Emerging Trends in Computer"
+                            />
 
                         <Button
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="wrap_content"
                             android:layout_margin="15dp"
                             android:backgroundTint="#673AB7"
-                            android:text="ETI"
+                            android:layout_below="@id/text3"
+                            android:background="@drawable/rounded"
+                            android:text="Enter"
                             android:id="@+id/eti"
-                            android:textSize="25dp" />
-                    </LinearLayout>
+                            />
+
+                    </RelativeLayout>
+
                 </androidx.cardview.widget.CardView>
+
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
