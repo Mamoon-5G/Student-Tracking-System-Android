@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -18,15 +17,11 @@ import java.util.ArrayList;
 
 public class addMarksETI extends AppCompatActivity {
 
-    public TextView studentID_view;
     public DBhelper db;
-    RecyclerView recyclerViewstud;
-
-    public EditText getMarksETI1,getMarksETI2,getMarksTheory;
+    public EditText getMarksETI1,getMarksETI2,getMarksTheoryETI,ETIAttendence;
     public Button submitETImarks;
 
-    ArrayList<String> id,name,department,sem,date,phone;
-    ViewAdapter adapter;
+    public TextView id,name;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +31,16 @@ public class addMarksETI extends AppCompatActivity {
         String studentId = i.getString("SelectedStudentID");
         getMarksETI1 = (EditText) findViewById(R.id.getmarks_eti1);
         getMarksETI2 = (EditText) findViewById(R.id.getmarks_eti2);
-        getMarksTheory = (EditText) findViewById(R.id.getmarks_etitheory);
+        getMarksTheoryETI = (EditText) findViewById(R.id.getmarks_etitheory);
         submitETImarks = (Button) findViewById(R.id.submitETImarks);
+        ETIAttendence = (EditText) findViewById(R.id.getattendence_etitheory);
 
 
 
         db = new DBhelper(this); // Initialize the db object
 
-        id = new ArrayList<>();
-        name = new ArrayList<>();
-        department = new ArrayList<>();
-        sem = new ArrayList<>();
-        date = new ArrayList<>();
-        phone = new ArrayList<>();
-        recyclerViewstud = findViewById(R.id.RecycleViewStudent_eti);
-        adapter = new ViewAdapter(this,id,name,department,sem,date,phone);
-        recyclerViewstud.setAdapter(adapter);
-        recyclerViewstud.setLayoutManager(new LinearLayoutManager(this));
-
+        id = findViewById(R.id.studentsetIDETI);
+        name = findViewById(R.id.StudentSetNameETI);
         String dbid_view = studentId;
         displaydata(dbid_view);
 
@@ -65,7 +52,8 @@ public class addMarksETI extends AppCompatActivity {
 
                 String dbmarksUT1 = getMarksETI1.getText().toString();
                 String dbmarksUT2 = getMarksETI2.getText().toString();
-                String dbmarksTheory = getMarksETI1.getText().toString();
+                String dbmarksTheory = getMarksTheoryETI.getText().toString();
+                String etiAttendence = ETIAttendence.getText().toString();
 
 
                 String dbid = dbid_view;
@@ -75,6 +63,14 @@ public class addMarksETI extends AppCompatActivity {
                 }else{
                     Toast.makeText(addMarksETI.this, "Not Inserted", Toast.LENGTH_SHORT).show();
                 }
+
+                boolean addattendence = db.insertETIAttendence(dbid,etiAttendence);
+                if(addattendence == true){
+                    //Nothing
+                }else{
+                    //Nothing
+                }
+
 
 
 
@@ -93,14 +89,11 @@ public class addMarksETI extends AppCompatActivity {
             return;
         } else {
             while (cursor.moveToNext()) {
-                id.add(cursor.getString(0));
-                name.add(cursor.getString(1));
-                department.add(cursor.getString(2));
-                sem.add(cursor.getString(3));
-                date.add(cursor.getString(4));
-                phone.add(cursor.getString(5));
+                id.setText(cursor.getString(0));
+                name.setText(cursor.getString(1));
+
             }
-            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+
         }
     }
 

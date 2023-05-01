@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Subjects extends AppCompatActivity {
     
-    public Button mad,wdp,pwp,eti;
+    public Button mad,pwp,eti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,6 @@ public class Subjects extends AppCompatActivity {
         
         
         mad=(Button)findViewById(R.id.mad);
-        wdp=(Button)findViewById(R.id.wdp);
         pwp=(Button)findViewById(R.id.pwp);
         eti=(Button)findViewById(R.id.eti);
         
@@ -27,10 +26,7 @@ public class Subjects extends AppCompatActivity {
             @Override
             public void onClick(View v) { openmad(); }
         });
-        wdp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openwdp(); }
-        });
+
         pwp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openpwp(); }
@@ -55,11 +51,7 @@ public class Subjects extends AppCompatActivity {
 
     }
 
-    private void openwdp() {
 
-        Intent i = new Intent(this, WDPactivity.class);
-        startActivity(i);
-    }
 
     private void openmad() {
         Intent i = new Intent(this, MadActivity.class);

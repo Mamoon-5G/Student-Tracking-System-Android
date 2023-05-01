@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MadActivity">
+
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
+      android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/heading_faculty"
@@ -28,91 +28,89 @@
         android:layout_below="@id/heading_faculty"
         android:layout_margin="20sp"
         android:backgroundTint="#D2F4D4"
-        app:cardCornerRadius="15dp"
-        >
+        app:cardCornerRadius="15dp">
+
       <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_margin="20dp"
-          ><TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Faculty Name :"
-          android:id="@+id/factname_eti"
-          android:textSize="25sp"
+          android:layout_margin="20dp">
 
-          />
         <TextView
+            android:id="@+id/factname_eti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Faculty Subject :"
+            android:text="Ms. Samia Sayed"
+            android:textSize="25sp"
+
+            />
+
+        <TextView
             android:id="@+id/factsubject_eti"
-            android:layout_below="@+id/factname_eti"
-            android:textSize="25sp"
-
-            />
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Faculty Subject :"
-            android:id="@+id/factcode_eti"
-            android:layout_below="@+id/factsubject_eti"
+            android:layout_below="@+id/factname_eti"
+            android:text="Emerging Trends in Computer"
             android:textSize="25sp"
-            android:layout_marginBottom="35dp"
 
             />
+
+        <TextView
+            android:id="@+id/factcode_eti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/factsubject_eti"
+            android:layout_marginBottom="35dp"
+            android:text="22618"
+            android:textSize="25sp"
+
+            />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/factcode_eti"
-            app:cardCornerRadius="15dp"
             android:backgroundTint="#C7E3E0"
-            >
+            app:cardCornerRadius="15dp">
+
           <RelativeLayout
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              >
+              android:layout_height="wrap_content">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_marginTop="35sp"
-                android:layout_marginStart="34dp"
-                android:layout_height="wrap_content"
-                android:text="Enter your passcode"
                 android:id="@+id/factsuggestion_eti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="35sp"
+                android:text="Enter your passcode"
 
 
                 />
 
 
             <EditText
-                android:layout_width="match_parent"
                 android:id="@+id/getpasscode_eti"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/factsuggestion_eti"
                 android:layout_margin="25sp"
                 android:background="@drawable/rounded2"
-                android:inputType="numberPassword"
                 android:hint="Pass-code"
-                />
+                android:inputType="numberPassword" />
 
             <Button
+                android:id="@+id/verify_eti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/verify_eti"
                 android:layout_below="@id/getpasscode_eti"
-                android:text="Verify"
-                android:background="@drawable/rounded"
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:layout_marginBottom="25sp"
-                />
+                android:background="@drawable/rounded"
+                android:text="Verify" />
           </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
-
-
-
 
 
       </RelativeLayout>

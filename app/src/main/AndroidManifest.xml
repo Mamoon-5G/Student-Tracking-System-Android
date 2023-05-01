@@ -15,9 +15,6 @@
             android:name=".addMarksPWP"
             android:exported="false" />
         <activity
-            android:name=".addMarksWDP"
-            android:exported="false" />
-        <activity
             android:name=".addMarksMAD"
             android:exported="false" />
         <activity
@@ -33,13 +30,7 @@
             android:name=".SearchMAD"
             android:exported="false" />
         <activity
-            android:name=".SearchWDP"
-            android:exported="false" />
-        <activity
             android:name=".ETIactivity"
-            android:exported="false" />
-        <activity
-            android:name=".WDPactivity"
             android:exported="false" />
         <activity
             android:name=".PwpActivity"

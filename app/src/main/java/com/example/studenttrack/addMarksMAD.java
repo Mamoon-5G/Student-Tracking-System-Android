@@ -17,15 +17,11 @@ import java.util.ArrayList;
 
 public class addMarksMAD extends AppCompatActivity {
 
-    public TextView studentID_view;
     public DBhelper db;
-    RecyclerView recyclerViewstud;
-
-    public EditText getMarksMAD1,getMarksMAD2,getMarksTheoryMAD;
+    public EditText getMarksMAD1,getMarksMAD2,getMarksTheoryMAD,MADAttendence;
     public Button submitMADmarks;
 
-    ArrayList<String> id,name,department,sem,date,phone;
-    ViewAdapter adapter;
+    public TextView id,name;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +33,14 @@ public class addMarksMAD extends AppCompatActivity {
         getMarksMAD2 = (EditText) findViewById(R.id.getmarks_mad2);
         getMarksTheoryMAD = (EditText) findViewById(R.id.getmarks_madtheory);
         submitMADmarks = (Button) findViewById(R.id.submitMADmarks);
+        MADAttendence = (EditText) findViewById(R.id.getattendence_madtheory);
 
 
 
         db = new DBhelper(this); // Initialize the db object
 
-        id = new ArrayList<>();
-        name = new ArrayList<>();
-        department = new ArrayList<>();
-        sem = new ArrayList<>();
-        date = new ArrayList<>();
-        phone = new ArrayList<>();
-        recyclerViewstud = findViewById(R.id.RecycleViewStudent_mad);
-        adapter = new ViewAdapter(this,id,name,department,sem,date,phone);
-        recyclerViewstud.setAdapter(adapter);
-        recyclerViewstud.setLayoutManager(new LinearLayoutManager(this));
-
+        id = findViewById(R.id.studentsetIDMAD);
+        name = findViewById(R.id.StudentSetNameMAD);
         String dbid_view = studentId;
         displaydata(dbid_view);
 
@@ -65,6 +53,7 @@ public class addMarksMAD extends AppCompatActivity {
                 String dbmarksUT1 = getMarksMAD1.getText().toString();
                 String dbmarksUT2 = getMarksMAD2.getText().toString();
                 String dbmarksTheory = getMarksTheoryMAD.getText().toString();
+                String madAttendence = MADAttendence.getText().toString();
 
 
                 String dbid = dbid_view;
@@ -74,6 +63,14 @@ public class addMarksMAD extends AppCompatActivity {
                 }else{
                     Toast.makeText(addMarksMAD.this, "Not Inserted", Toast.LENGTH_SHORT).show();
                 }
+
+                boolean addattendence = db.insertMADAttendence(dbid,madAttendence);
+                if(addattendence == true){
+                    //Nothing
+                }else{
+                    //Nothing
+                }
+
 
 
 
@@ -92,14 +89,11 @@ public class addMarksMAD extends AppCompatActivity {
             return;
         } else {
             while (cursor.moveToNext()) {
-                id.add(cursor.getString(0));
-                name.add(cursor.getString(1));
-                department.add(cursor.getString(2));
-                sem.add(cursor.getString(3));
-                date.add(cursor.getString(4));
-                phone.add(cursor.getString(5));
+                id.setText(cursor.getString(0));
+                name.setText(cursor.getString(1));
+
             }
-            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+
         }
     }
 

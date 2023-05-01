@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -18,15 +17,10 @@ import java.util.ArrayList;
 
 public class addMarksPWP extends AppCompatActivity {
 
-    public TextView studentID_view;
     public DBhelper db;
-    RecyclerView recyclerViewstud;
-
-    public EditText getMarksPWP1,getMarksPWP2,getMarksTheoryPWP;
+    public EditText getMarksPWP1,getMarksPWP2,getMarksTheoryPWP,PWPAttendence;
     public Button submitPWPmarks;
-
-    ArrayList<String> id,name,department,sem,date,phone;
-    ViewAdapter adapter;
+    public TextView id,name;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +32,14 @@ public class addMarksPWP extends AppCompatActivity {
         getMarksPWP2 = (EditText) findViewById(R.id.getmarks_pwp2);
         getMarksTheoryPWP = (EditText) findViewById(R.id.getmarks_pwptheory);
         submitPWPmarks = (Button) findViewById(R.id.submitPWPmarks);
+        PWPAttendence = (EditText) findViewById(R.id.getattendence_pwptheory);
 
 
 
         db = new DBhelper(this); // Initialize the db object
 
-        id = new ArrayList<>();
-        name = new ArrayList<>();
-        department = new ArrayList<>();
-        sem = new ArrayList<>();
-        date = new ArrayList<>();
-        phone = new ArrayList<>();
-        recyclerViewstud = findViewById(R.id.RecycleViewStudent_pwp);
-        adapter = new ViewAdapter(this,id,name,department,sem,date,phone);
-        recyclerViewstud.setAdapter(adapter);
-        recyclerViewstud.setLayoutManager(new LinearLayoutManager(this));
-
+        id = findViewById(R.id.studentsetIDPWP);
+        name = findViewById(R.id.StudentSetNamePWP);
         String dbid_view = studentId;
         displaydata(dbid_view);
 
@@ -66,6 +52,7 @@ public class addMarksPWP extends AppCompatActivity {
                 String dbmarksUT1 = getMarksPWP1.getText().toString();
                 String dbmarksUT2 = getMarksPWP2.getText().toString();
                 String dbmarksTheory = getMarksTheoryPWP.getText().toString();
+                String etiAttendence = PWPAttendence.getText().toString();
 
 
                 String dbid = dbid_view;
@@ -76,6 +63,12 @@ public class addMarksPWP extends AppCompatActivity {
                     Toast.makeText(addMarksPWP.this, "Not Inserted", Toast.LENGTH_SHORT).show();
                 }
 
+                boolean addattendence = db.insertETIAttendence(dbid,etiAttendence);
+                if(addattendence == true){
+                    //Nothing
+                }else{
+                    //Nothing
+                }
 
 
             }
@@ -93,14 +86,11 @@ public class addMarksPWP extends AppCompatActivity {
             return;
         } else {
             while (cursor.moveToNext()) {
-                id.add(cursor.getString(0));
-                name.add(cursor.getString(1));
-                department.add(cursor.getString(2));
-                sem.add(cursor.getString(3));
-                date.add(cursor.getString(4));
-                phone.add(cursor.getString(5));
+                id.setText(cursor.getString(0));
+                name.setText(cursor.getString(1));
+
             }
-            adapter.notifyDataSetChanged(); // Notify the adapter after adding data
+
         }
     }
 

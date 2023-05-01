@@ -22,9 +22,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddStudent extends AppCompatActivity {
-
-
-
     final Calendar myCalendar= Calendar.getInstance();
     public EditText insert_id,insert_name,insert_date,insert_phone;
     public DBhelper Db;

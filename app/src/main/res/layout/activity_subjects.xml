@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Subjects">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,11 +15,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="721dp">
-
                 <TextView
                     android:id="@+id/heading"
                     android:layout_width="match_parent"
@@ -42,6 +39,7 @@
                     android:textAlignment="center"
                     app:cardCornerRadius="15dp">
 
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -61,15 +59,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_margin="15dp"
-                            android:id="@+id/wdp"
-                            android:backgroundTint="#673AB7"
-                            android:text="WDP"
-                            android:textSize="25dp" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:layout_margin="15dp"
                             android:id="@+id/pwp"
                             android:backgroundTint="#673AB7"
                             android:text="PWP"
@@ -83,14 +72,9 @@
                             android:text="ETI"
                             android:id="@+id/eti"
                             android:textSize="25dp" />
-
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
             </RelativeLayout>
         </LinearLayout>
-
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

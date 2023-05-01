@@ -19,20 +19,21 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
     public DBhelper(Context context) {
+
         super(context, name, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL("Create table students_details(" + ID_1 + " INTEGER primary key , NAME TEXT,DEPARTMENT TEXT,SEMESTER TEXT,DATE TEXT,Phone_Number INTEGER)");
         db.execSQL("Create table eti_marks(ID INTEGER primary key,UT1 TEXT,UT2 TEXT,THEORY TEXT)");
         db.execSQL("Create table mad_marks(ID INTEGER primary key, UT1 TEXT,UT2 TEXT,THEORY TEXT)");
         db.execSQL("Create table wdp_marks(ID INTEGER primary key, UT1 TEXT,UT2 TEXT,THEORY TEXT)");
         db.execSQL("Create table pwp_marks(ID INTEGER primary key, UT1 TEXT,UT2 TEXT,THEORY TEXT)");
-
+        db.execSQL("Create table madAttendence(ID INTEGER primary key,Attendence TEXT )");
+        db.execSQL("Create table etiAttendence(ID INTEGER primary key,Attendence TEXT )");
+        db.execSQL("Create table pwpAttendence(ID INTEGER primary key,Attendence TEXT )");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -41,12 +42,10 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("Drop table if exists mad_marks");
         db.execSQL("Drop table if exists wdp_marks");
         db.execSQL("Drop table if exists pwp_marks");
-
-
-
-
+        db.execSQL("Drop table if exists madAttendence");
+        db.execSQL("Drop table if exists etiAttendence");
+        db.execSQL("Drop table if exists pwpAttendence");
     }
-
     //Methodd to add the Student Details to the Database
 
     Boolean insertStudent(String id, String name, String department, String semester, String date, String phone) {
@@ -87,24 +86,6 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
 
-
-    Boolean insertWdpMarks(String id,String unit1,String unit2,String Theory){
-        SQLiteDatabase mydb = getWritableDatabase();
-        ContentValues Wdpmarks = new ContentValues();
-        Wdpmarks.put("ID",id);
-        Wdpmarks.put("UT1",unit1);
-        Wdpmarks.put("UT2",unit2);
-        Wdpmarks.put("THEORY",Theory);
-        long result = mydb.insert("wdp_marks",null,Wdpmarks);
-        if (result==-1){
-            return true;
-        }else {
-            return false;
-        }
-
-    }
-
-
     Boolean insertMadMarks(String id,String unit1,String unit2,String Theory){
         SQLiteDatabase mydb = getWritableDatabase();
         ContentValues Madmarks = new ContentValues();
@@ -121,9 +102,6 @@ public class DBhelper extends SQLiteOpenHelper {
 
     }
 
-
-
-
     Boolean insertPwpMarks(String id,String unit1,String unit2,String Theory){
         SQLiteDatabase mydb = getWritableDatabase();
         ContentValues Pwpmarks = new ContentValues();
@@ -139,26 +117,43 @@ public class DBhelper extends SQLiteOpenHelper {
         }
 
     }
-
-
-
-
-
-    // Method to Add Marks in Database
-
-
-
-
-    Boolean insertAttendence(String id, String Attendence1, String Attendence2, String Attendence3, String Attendence4) {
+    Boolean insertMADAttendence(String id, String Attendence) {
         SQLiteDatabase myDb = getWritableDatabase();
-        ContentValues Attendence = new ContentValues();
-        Attendence.put("Id", id);
-        Attendence.put("ATTENDENCE1", Attendence1);
-        Attendence.put("ATTENDENCE2", Attendence2);
-        Attendence.put("ATTENDENCE3", Attendence3);
-        Attendence.put("ATTENDENCE4", Attendence4);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Id", id);
+        contentValues.put("ATTENDENCE", Attendence);
+        long result = myDb.insert("madAttendence", null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
 
-        long result = myDb.insert("attendence_details", null, Attendence);
+
+    }
+
+
+    Boolean insertETIAttendence(String id, String Attendence) {
+        SQLiteDatabase myDb = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Id", id);
+        contentValues.put("ATTENDENCE", Attendence);
+        long result = myDb.insert("etiAttendence", null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+    }
+
+    Boolean insertPWPAttendence(String id, String Attendence) {
+        SQLiteDatabase myDb = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Id", id);
+        contentValues.put("ATTENDENCE", Attendence);
+        long result = myDb.insert("pwpAttendence", null, contentValues);
         if (result == -1) {
             return false;
         } else {
@@ -250,15 +245,28 @@ public class DBhelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor searchMarks(String studentId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM marks_details WHERE id=?";
-        Cursor cursor = db.rawQuery(query, new String[]{studentId});
-        return cursor;
-    }
-
     public void deleteData() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.execSQL("DELETE FROM  students_details;");
+    }
+
+
+    public Cursor searchETIAttendence(String studentId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Attendence FROM etiAttendence WHERE id=?";
+        Cursor cursor = db.rawQuery(query, new String[]{studentId});
+        return cursor;
+    }
+    public Cursor searchMADAttendence(String studentId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Attendence FROM madAttendence WHERE id=?";
+        Cursor cursor = db.rawQuery(query, new String[]{studentId});
+        return cursor;
+    }
+    public Cursor searchPWPAttendence(String studentId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Attendence FROM pwpAttendence WHERE id=?";
+        Cursor cursor = db.rawQuery(query, new String[]{studentId});
+        return cursor;
     }
 }
